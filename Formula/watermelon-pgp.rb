@@ -6,23 +6,23 @@ class WatermelonPgp < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.1.0/watermelon-pgp-v0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "8ce89bada69298612c8392db90bb82af10c24275fec35b180e4e3e69e97530c0"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.2.0/watermelon-pgp-v0.2.0-aarch64-apple-darwin.tar.gz"
+      sha256 "17c8036a0c940c1f2fbf6255e32b4ed9dcf7ba9388cc14fd7d259464fb9d3501"
     end
     on_intel do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.1.0/watermelon-pgp-v0.1.0-x86_64-apple-darwin.tar.gz"
-      sha256 "ca1446d2b47291a932814650623d3f0f5932cf6b741cbd9a229e6e4dbf152ccb"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.2.0/watermelon-pgp-v0.2.0-x86_64-apple-darwin.tar.gz"
+      sha256 "f4640ee2aeea3fbc71ac4b44ab27eddb13b210d7907363fb7483709b796d432f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.1.0/watermelon-pgp-v0.1.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "17ced0146def46980102730b6de860eefb9860faf3dfaa2b5962adcd32ee2ced"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.2.0/watermelon-pgp-v0.2.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "503fd8de968a38f116e74e1fc5cbbf51a5e2011617881c60c4f69fd696511439"
     end
     on_intel do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.1.0/watermelon-pgp-v0.1.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "093a59f5096ad99c5fb4abe97b5a929d4a8f0fb61124d1f41d139dc54d91dead"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.2.0/watermelon-pgp-v0.2.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "aaff6000bdad1d731152c3e17c20534f3974e2ee7688dd107d6c0907227e69a7"
     end
   end
 
