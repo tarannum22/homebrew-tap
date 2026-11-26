@@ -6,60 +6,60 @@ class WatermelonPgp < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.3.0/watermelon-pgp-v0.3.0-aarch64-apple-darwin.tar.gz"
-      sha256 "483f545e8b5e2bfb3f10e7b8618e705cb9c1b6de1293b638d0e7e4245804df4c"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.4.0/watermelon-pgp-v0.4.0-aarch64-apple-darwin.tar.gz"
+      sha256 "816cc6b3622eedb7bd98d41a0166be660d060ddd5ddbc9ded9fb75835196891d"
     end
     on_intel do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.3.0/watermelon-pgp-v0.3.0-x86_64-apple-darwin.tar.gz"
-      sha256 "ba27f218a8752f1eb1ed0dc418c53d10018e2887233cb8af0d77586fb4349319"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.4.0/watermelon-pgp-v0.4.0-x86_64-apple-darwin.tar.gz"
+      sha256 "156a56a8e1881b6d4b88c7f06803643f0ed0cc6f681854f10837df4d8ef28d37"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.3.0/watermelon-pgp-v0.3.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "9221d87e93b1d44a3cbaffa0fcf41ad8781c370d70ce59766a812ca1cc6c339b"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.4.0/watermelon-pgp-v0.4.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "19ee7b5dc08de900ee97175d8464af4dbeac60c64d8de9cc84d56df1dbf95294"
     end
     on_intel do
-      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.3.0/watermelon-pgp-v0.3.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "89da5e814dcd9f3e0a2120f03f6c6b760de0401ad3a7db79c76d28beddc385e2"
+      url "https://github.com/tarannum22/watermelon-pgp/releases/download/v0.4.0/watermelon-pgp-v0.4.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "101b4174aa01ee058853538dfe798a36834e059bca405e6543e3420768b743f7"
     end
   end
 
   def install
-    bin.install "watermelon"
+    bin.install "watermelonpgp"
     doc.install "README.md", "CHANGELOG.md", "docs"
     pkgshare.install "contrib"
   end
 
   service do
-    run [opt_bin/"watermelon", "serve"]
-    environment_variables WATERMELON_DATA_DIR: var/"watermelon"
+    run [opt_bin/"watermelonpgp", "serve"]
+    environment_variables WATERMELONPGP_DATA_DIR: var/"watermelonpgp"
     keep_alive crashed: true
-    log_path var/"log/watermelon.log"
-    error_log_path var/"log/watermelon.log"
+    log_path var/"log/watermelonpgp.log"
+    error_log_path var/"log/watermelonpgp.log"
   end
 
   def caveats
     <<~EOS
       Create the database, master key and admin password once:
-        watermelon --data-dir #{var}/watermelon init
+        watermelonpgp --data-dir #{var}/watermelonpgp init
 
       Then run it in the background (web UI on http://127.0.0.1:8080):
         brew services start watermelon-pgp
       or in the foreground:
-        watermelon --data-dir #{var}/watermelon serve
+        watermelonpgp --data-dir #{var}/watermelonpgp serve
 
-      Back up #{var}/watermelon/master.key separately: without it the
+      Back up #{var}/watermelonpgp/master.key separately: without it the
       secret keys in the database cannot be recovered.
     EOS
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/watermelon --version")
-    ENV["WATERMELON_DATA_DIR"] = testpath/"data"
-    pipe_output("#{bin}/watermelon --passphrase-stdin init", "a long test password\n", 0)
-    assert_path_exists testpath/"data/watermelon.db"
-    assert_match "Created customer", shell_output("#{bin}/watermelon customer add ACME")
+    assert_match version.to_s, shell_output("#{bin}/watermelonpgp --version")
+    ENV["WATERMELONPGP_DATA_DIR"] = testpath/"data"
+    pipe_output("#{bin}/watermelonpgp --passphrase-stdin init", "a long test password\n", 0)
+    assert_path_exists testpath/"data/watermelonpgp.db"
+    assert_match "Created customer", shell_output("#{bin}/watermelonpgp customer add ACME")
   end
 end
